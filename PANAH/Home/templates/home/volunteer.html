@@ -14,7 +14,7 @@
     <form method="POST" action="{% url 'volunteer' %}">
         {% csrf_token %}
         <div class="form-group">
-            <label for="income_max">Income</label>
+            <label for="income">Income</label>
             <input type="number" name="income" class="form-control" id="password" value="0">
         </div>
         <select id="cars" name="state">
