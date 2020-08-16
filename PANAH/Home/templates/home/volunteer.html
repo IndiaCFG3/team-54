@@ -8,41 +8,27 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
-<div class="container">
-    <h1>Filter your options here </h1>
     <form method="POST" action="{% url 'volunteer' %}">
         {% csrf_token %}
         <div class="form-group">
             <label for="income">income</label>
             <input type="number" name="income" class="form-control" id="password">
         </div>
-        <select id="cars" name="state">
+        <select id="state" name="state">
             <option value="Andhra Pradesh">Andhra Pradesh</option>
             <option value="Telangana">Telangana</option>
             <option value="Uttar Pradesh">Uttar Pradesh</option>
             <option value="Tamil Nadu">Tamil Nadu</option>
         </select>
         <div class="form-group">
-            <label for="max_fam">max_fam</label>
-            <input type="number" name="max_fam" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="max_fam">min_fam</label>
-            <input type="number" name="min_fam" class="form-control">
+            <label for="fam">fam</label>
+            <input type="number" name="fam" class="form-control">
         </div>
         <div class="form-group">
             <select id="cars" name="living">
                 <label for="title">Living</label>
                 <option value="OWN HOUSE">OWN HOUSE</option>
                 <option value="RENT">RENT</option>
-                <option value="Other">other</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <select id="cars" name="organization">
-                <label for="title">organization</label>
-                <option value="Organised ">Organised </option>
-                <option value="UnOrganised">UnOrganised</option>
                 <option value="Other">other</option>
             </select>
         </div>
@@ -56,7 +42,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
-    {% for i in Schemes %}
+    {% for i in Schemas %}
     <div class="jumbotron">
         <h1 class="display-4">{{i.title}}</h1>
         <p class="lead">{{i.description}}</p>
