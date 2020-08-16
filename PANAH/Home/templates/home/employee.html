@@ -8,7 +8,7 @@
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <div class=container>
-    <h1>Create Volunteers</h1>
+    <h1>Create Users</h1>
     <form method="POST" action="{% url 'signupVol' %}">
         {% csrf_token %}
         <div class="form-group">
@@ -34,5 +34,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
-    <h1>Other works of the employee</h1>
+    <h1>Other works of the Volunteer</h1>
     </div>
