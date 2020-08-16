@@ -17,15 +17,15 @@
             <small id="usernameHelp" class="form-text text-muted">Please enter your exact username </small>
         </div>
         <div class="form-group">
-            <label for="username">full_Name</label>
+            <label for="username">Full Name</label>
             <input type="text" name="full_Name" class="form-control" id="full_Name" aria-describedby="usernameHelp">
         </div>
         <div class="form-group">
-            <label for="username">ngo_id</label>
+            <label for="username">NGO ID</label>
             <input type="text" name="ngo_id" class="form-control" id="ngo_id">
         </div>
         <div class="form-group">
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="text" name="email" class="form-control" id="email">
         </div>
         <div class="form-group">
@@ -51,11 +51,11 @@
     <form method="POST" action="{% url 'schemaadd' %}">
         {% csrf_token %}
         <div class="form-group">
-            <label for="title">title</label>
+            <label for="title">Title</label>
             <input type="text" name="title" class="form-control" id="email">
         </div>
         <div class="form-group">
-            <label for="income_max">income_max</label>
+            <label for="income_max">Maximum Income</label>
             <input type="number" name="income_max" class="form-control" id="password">
         </div>
         <div class="form-group">
