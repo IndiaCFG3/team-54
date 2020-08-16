@@ -77,10 +77,10 @@ class EndUser(models.Model):
     )
 class Employee(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
-    full_Name = models.CharField(max_length = 20)
-    email = models.EmailField(max_length = 20)
+    full_Name = models.CharField(max_length = 60,null=True)
+    email = models.EmailField(max_length = 50)
     ngo_id = models.CharField(max_length =10)
-    location= models.CharField(max_length =20)
+    location= models.CharField(max_length =40)
 class Volunteer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     phone_number= models.CharField(max_length =12)
