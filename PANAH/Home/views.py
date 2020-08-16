@@ -56,6 +56,7 @@ def volunteer(request):
         organization = request.POST['organization']
         gender = request.POST['gender']
         Schemes = Schema.objects.filter(gender=gender).filter(state=state).filter(living=living).filter(organization=organization)
+        print(Schemes)
         return render(request, 'home/volunteer.html',{'Schemes':Schemes})
     else:
         return render(request, 'home/volunteer.html')

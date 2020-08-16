@@ -13,12 +13,8 @@
     <form method="POST" action="{% url 'volunteer' %}">
         {% csrf_token %}
         <div class="form-group">
-            <label for="income_max">income_max</label>
-            <input type="number" name="income_max" class="form-control" id="password">
-        </div>
-        <div class="form-group">
-            <label for="password">income_min</label>
-            <input type="number" name="income_min" class="form-control" id="password">
+            <label for="income">income</label>
+            <input type="number" name="income" class="form-control" id="password">
         </div>
         <select id="cars" name="state">
             <option value="Andhra Pradesh">Andhra Pradesh</option>
