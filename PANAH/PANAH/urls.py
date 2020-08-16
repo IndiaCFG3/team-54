@@ -20,4 +20,14 @@ from Home import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',views.home,name='home'),
+    path('loginx/',views.loginx,name='loginx'),
+    path('adminx/',views.adminx,name='adminx'),
+    path('employee/',views.employee,name='employee'),
+    path('volunteer/',views.volunteer,name='volunteer'),
+    path('signupemp/',views.signupemp,name='signupemp'),
+    path('schemaadd/',views.schemaadd,name='schemaadd'),
+    path('schemaview/<int:id>',views.schemaview,name='schemaview'),
+    path('schemaedit/<int:id>',views.schemaedit,name='schemaedit'),
+    path('schemadelete/<int:id>',views.schemadelete,name='schemadelete'),
+    path('signupVol/',views.signupVol,name='signupVol'),
 ]

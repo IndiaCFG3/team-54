@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<div class=container>
+    <h1>Create Volunteers</h1>
+    <form method="POST" action="{% url 'signupVol' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
+        </div>
+        <div class="form-group">
+            <label for="username">Phone Number</label>
+            <input type="text" name="phone_number" class="form-control" id="full_Name" aria-describedby="usernameHelp">
+            <small id="usernameHelp" class="form-text text-muted">Please enter your phonenumber with correct code</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password1" class="form-control" id="password">
+        </div>
+        <div class="form-group">
+            <label for="password">Retype Password</label>
+            <input type="password" name="password2" class="form-control" id="password">
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <textarea type="text" name="location" class="form-control" id="location"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>

@@ -1,0 +1,16 @@
+{% for i in schemes %}
+<div class="jumbotron">
+    <h1 class="display-4">{{i.title}}</h1>
+    <p class="lead">{{i.description}}</p>
+    <hr class="my-4">
+    <p>Living: {{i.living}}</p>
+    <p>Income: {{i.income_min}} <= Income <= {{i.income_max}} </p>
+    <p>Family Size: {{i.max_fam}} <= Family size <= {{i.min_fam}}</p>
+    <p>State: {{i.state}}</p>
+    <p>Organization: {{i.organization}}</p>
+    <p>Gender: {{i.gender}}</p>
+    <p>Documents Needed: {{documents_needed}}</p>
+  </div>
+    <button><a href="{% url 'schemaedit' i.id %}">EDIT</a></button>
+<button><a href="{% url 'schemadelete' i.id %}">Delete</a></button>
+{% endfor %}

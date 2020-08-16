@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
@@ -14,23 +14,23 @@ def home(request):
     return render(request, 'home/home.html')
 
 
-def login(request):
+def loginx(request):
     if request.method == "POST":
         user = authenticate(
             request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
             return render(request, 'home/home.html', {'form': AuthenticationForm(), 'error': "Invalid username or password"})
         else:
-            login(request, user)
             try:
+                login(request,user)
                 admin = User.objects.filter(username='admin')
-                if admin is None:
-                    employee = Employee.objects.filter(User=request.user)
-                    if employee is None:
-                        volunteer = Volunteer.objects.filter(User=request.user)
-                        if volunteer is None:
-                            use = EndUser.objects.filter(User=request.user)
-                            return redirect("viewfilterform")
+                if request.POST['username']!='admin':
+                    employee = Employee.objects.filter(user=request.user)
+                    if len(employee)==0:
+                        volunteer = Volunteer.objects.filter(user=request.user)
+                        if len(volunteer)==0:
+                            use = EndUser.objects.filter(user=request.user)
+                            return render(request,'home/enduser.html')
                         else:
                             return redirect("volunteer")
                     else:
@@ -38,6 +38,7 @@ def login(request):
                 else:
                     return redirect("adminx")
             except Exception as e:
+                print(e)
                 return render(request, 'home/home.html', {'main_error': 'something went wrong'})
 def adminx(request):
     schemes = Schema.objects.all()
@@ -51,17 +52,47 @@ def enduser(request):
 def schemaview(request, id):
     schemes = Schema.objects.filter(id=id)
     return render(request, "home/schemeview.html", {'schemes': schemes})
+def schemaadd(request):
+    description = request.POST['description']
+    title = request.POST['title']
+    income_max = request.POST['income_max']
+    income_min = request.POST['income_min']
+    state = request.POST['state']
+    max_fam = request.POST['max_fam']
+    min_fam = request.POST['min_fam']
+    living = request.POST['living']
+    organization = request.POST['organization']
+    gender = request.POST['gender']
+    Schema.objects.create(title=title, description=description,
+    income_max=income_max,income_min=income_min,state=state,
+    max_fam=max_fam,min_fam=min_fam,living=living,organization=organization,gender=gender)
+    return redirect("adminx")
 
-
-def schemaedit(request, id):
-    schemes = Schema.objects.filter(id=id)
-    return render(request, 'home/schemaedit.html', {'schemes': schemes})
+def schemaedit(request,id):
+    if request.method =="GET":
+        schemes = Schema.objects.filter(id=id)
+        return render(request, 'home/schemaedit.html', {'id': id})
+    else:
+        description = request.POST['description']
+        title = request.POST['title']
+        income_max = request.POST['income_max']
+        income_min = request.POST['income_min']
+        state = request.POST['state']
+        max_fam = request.POST['max_fam']
+        min_fam = request.POST['min_fam']
+        living = request.POST['living']
+        organization = request.POST['organization']
+        gender = request.POST['gender']
+        Schema.objects.filter(id=id).update(title=title, description=description,
+        income_max=income_max,income_min=income_min,state=state,
+        max_fam=max_fam,min_fam=min_fam,living=living,organization=organization,gender=gender)
+        return redirect("schemaview",id)
 
 
 def schemadelete(request, id):
     schemes = Schema.objects.filter(id=id)
     schemes.delete()
-    return render(request, 'home/admin.html', {"scheme": scheme})
+    return redirect("adminx")
 
 
 def viewfilterform(request):
@@ -87,13 +118,12 @@ def signupemp(request):
             password2 = request.POST['password2']
             location = request.POST['location']
             if password1 == password2:
-                user = User.objects.create_user(
+                userx = User.objects.create_user(
                     request.POST['username'], password=request.POST['password1'])
-                user.save()
-                login(request, user)
+                userx.save()
                 Employee.objects.create(
-                    user=user, full_Name=user_no, email=email, ngo_id=ngo_id, location=location)
-                return render(request, 'home/employee.html')
+                    user=userx, full_Name=full_Name, email=email, ngo_id=ngo_id, location=location)
+                return redirect("adminx")
             else:
                 return render(request, 'home/signupEmp.html', {'error': "Passwords don't match'"})
         except Exception as e:
@@ -116,7 +146,7 @@ def signupVol(request):
                 login(request, user)
                 Volunteer.objects.create(
                     user=user, phone_number=phone_number, location=location)
-                return render(request, 'home/volunteer.html')
+                return redirect("employee")
             else:
                 return render(request, 'home/signupEmp.html', {'error': "Passwords don't match'"})
         except Exception as e:

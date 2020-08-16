@@ -6,14 +6,14 @@ from django.utils import timezone
 # Create your models here.
 
 State = (
-        ("1", "ANDHRA PRADESH"),
-        ("2", "TAMIL NADU"),
-        ("3", "TELANGANA"),
-        ("4", "MAHARASHTRA"),
-        ("5", "WEST BENGAL"),
-        ("6", "UTTAR PRADESH"),
-        ("7", "KARNATAKA"),
-        ("8", "KERALA"),
+        ("ANDHRA PRADESH", "ANDHRA PRADESH"),
+        ("TAMIL NADU", "TAMIL NADU"),
+        ("TELANGANA", "TELANGANA"),
+        ("MAHARASHTRA", "MAHARASHTRA"),
+        ("WEST BENGAL", "WEST BENGAL"),
+        ("UTTAR PRADESH", "UTTAR PRADESH"),
+        ("KARNATAKA", "KARNATAKA"),
+        ("KERALA", "KERALA"),
 )
 Living = (
     ("1", "OWN HOUSE"),
