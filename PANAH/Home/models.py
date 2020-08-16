@@ -68,12 +68,17 @@ class EndUser(models.Model):
     state = models.CharField(
         max_length=20,
         choices=State,
-        default='1'
+        default='Andhra Pradesh'
+    )
+    organization = models.CharField(
+        max_length=20,
+        choices=Organization,
+        default='Organised'
     )
     gender = models.CharField(
         max_length=20,
         choices=Gender,
-        default = "1"
+        default = "Female"
     )
 class Employee(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)

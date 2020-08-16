@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="container">
+    <h1>Filter your options here </h1>
+    <form method="POST" action="{% url 'volunteer' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="income_max">income_max</label>
+            <input type="number" name="income_max" class="form-control" id="password">
+        </div>
+        <div class="form-group">
+            <label for="password">income_min</label>
+            <input type="number" name="income_min" class="form-control" id="password">
+        </div>
+        <select id="cars" name="state">
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+        </select>
+        <div class="form-group">
+            <label for="max_fam">max_fam</label>
+            <input type="number" name="max_fam" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="max_fam">min_fam</label>
+            <input type="number" name="min_fam" class="form-control">
+        </div>
+        <div class="form-group">
+            <select id="cars" name="living">
+                <label for="title">Living</label>
+                <option value="OWN HOUSE">OWN HOUSE</option>
+                <option value="RENT">RENT</option>
+                <option value="Other">other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="cars" name="organization">
+                <label for="title">organization</label>
+                <option value="Organised ">Organised </option>
+                <option value="UnOrganised">UnOrganised</option>
+                <option value="Other">other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="cars" name="gender">
+                <label for="title">Gender</label>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">other</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+    {% for i in Schemes %}
+    <div class="jumbotron">
+        <h1 class="display-4">{{i.title}}</h1>
+        <p class="lead">{{i.description}}</p>
+        <hr class="my-4">
+        <p>Living: {{i.living}}</p>
+        <p>Income: {{i.income_min}} <= Income <= {{i.income_max}} </p>
+        <p>Family Size: {{i.max_fam}} <= Family size <= {{i.min_fam}}</p>
+        <p>State: {{i.state}}</p>
+        <p>Organization: {{i.organization}}</p>
+        <p>Gender: {{i.gender}}</p>
+        <p>Documents Needed: {{documents_needed}}</p>
+      </div>
+    {% endfor %}
+</div>
