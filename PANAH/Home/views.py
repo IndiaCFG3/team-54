@@ -47,15 +47,14 @@ def employee(request):
     return render(request, 'home/employee.html')
 def volunteer(request):
     if request.method == 'POST':
-        income_max = request.POST['income_max']
-        income_min = request.POST['income_min']
+        income = request.POST['income']
         state = request.POST['state']
-        max_fam = request.POST['max_fam']
-        min_fam = request.POST['min_fam']
+        fam_size = request.POST['fam_size']
         living = request.POST['living']
         organization = request.POST['organization']
         gender = request.POST['gender']
-        Schemes = Schema.objects.filter(gender=gender).filter(state=state).filter(living=living).filter(organization=organization)
+        Schemes = Schema.objects.all().filter(gender=gender).filter(state=state).filter(living=living).filter(organization=organization).filter(income_min__gte=income).filter(income_max__lte=income)
+        print(Schemes)
         return render(request, 'home/volunteer.html',{'Schemes':Schemes})
     else:
         return render(request, 'home/volunteer.html')

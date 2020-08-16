@@ -9,16 +9,13 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
 <div class="container">
+    <h1>Hey User, Know Your Schemes Here.</h1>
     <h1>Filter your options here </h1>
     <form method="POST" action="{% url 'volunteer' %}">
         {% csrf_token %}
         <div class="form-group">
-            <label for="income_max">income_max</label>
-            <input type="number" name="income_max" class="form-control" id="password">
-        </div>
-        <div class="form-group">
-            <label for="password">income_min</label>
-            <input type="number" name="income_min" class="form-control" id="password">
+            <label for="income_max">Income</label>
+            <input type="number" name="income" class="form-control" id="password" value="0">
         </div>
         <select id="cars" name="state">
             <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -27,12 +24,8 @@
             <option value="Tamil Nadu">Tamil Nadu</option>
         </select>
         <div class="form-group">
-            <label for="max_fam">max_fam</label>
-            <input type="number" name="max_fam" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="max_fam">min_fam</label>
-            <input type="number" name="min_fam" class="form-control">
+            <label for="fam_size">Family Size</label>
+            <input type="number" name="fam_size" class="form-control" value="1">
         </div>
         <div class="form-group">
             <select id="cars" name="living">
@@ -58,7 +51,7 @@
                 <option value="Other">other</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">See Schemes</button>
     </form>
     {% for i in Schemes %}
     <div class="jumbotron">
@@ -66,8 +59,8 @@
         <p class="lead">{{i.description}}</p>
         <hr class="my-4">
         <p>Living: {{i.living}}</p>
-        <p>Income: {{i.income_min}} <= Income <= {{i.income_max}} </p>
-        <p>Family Size: {{i.max_fam}} <= Family size <= {{i.min_fam}}</p>
+        <p>Income: {{i.income_min}} >= Income >= {{i.income_max}} </p>
+        <p>Family Size: {{i.max_fam}} >= Family size >= {{i.min_fam}}</p>
         <p>State: {{i.state}}</p>
         <p>Organization: {{i.organization}}</p>
         <p>Gender: {{i.gender}}</p>
