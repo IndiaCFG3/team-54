@@ -3,7 +3,7 @@
 ## Team Members:
  - Shreekanth J S
  - Shanmukha Anurag S
- - Shobith Tulsain
+ - Shobhit Tulshain
  - Ruthvika Rathod
  - Kanishk Singh
  - Sri Yagna
